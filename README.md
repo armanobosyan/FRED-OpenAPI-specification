@@ -19,11 +19,17 @@ Delivers data in XML or JSON formats, offering structured, flexible data handlin
 
 **Categories**
 fred/category - Get a category.
+
 fred/category/children - Get the child categories for a specified parent category.
+
 fred/category/related - Get the related categories for a category.
+
 fred/category/series - Get the series in a category.
+
 fred/category/tags - Get the tags for a category.
+
 fred/category/related_tags - Get the related tags for a category.
+
 
 **Releases**
 fred/releases - Get all releases of economic data.
