@@ -1,0 +1,2681 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "FRED API",
+      "description": "API for accessing economic data from the Federal Reserve Economic Data (FRED) database.",
+      "version": "1.0.2"
+    },
+    "servers": [
+      {
+        "url": "https://api.stlouisfed.org",
+        "description": "FRED API server"
+      }
+    ],
+    "paths": {
+      "/fred/category": {
+        "get": {
+          "operationId": "getCategory",
+          "summary": "Get a category.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "description": "88e6be3b42147d9eb6726f79a6671453",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "xml"
+              }
+            },
+            {
+              "name": "category_id",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "default": 0
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response"
+            }
+          }
+        }
+      },
+      "/fred/category/children": {
+        "get": {
+          "operationId": "getCategoryChildren",
+          "summary": "Get the child categories for a specified parent category.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "xml"
+              }
+            },
+            {
+              "name": "category_id",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "default": 0
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response"
+            }
+          }
+        }
+      },
+      "/fred/category/related": {
+        "get": {
+          "operationId": "getCategoryRelated",
+          "summary": "Get related categories for a specified category.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "xml"
+              }
+            },
+            {
+              "name": "category_id",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "default": 0
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with related categories"
+            }
+          }
+        }
+      },
+      "/fred/category/series": {
+        "get": {
+          "operationId": "getCategorySeries",
+          "summary": "Retrieve series within a specified category.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "xml"
+              }
+            },
+            {
+              "name": "category_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "Offset for the start of the results"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "series_id",
+                  "title",
+                  "units",
+                  "frequency",
+                  "seasonal_adjustment",
+                  "realtime_start",
+                  "realtime_end",
+                  "last_updated",
+                  "observation_start",
+                  "observation_end",
+                  "popularity",
+                  "group_popularity"
+                ]
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            },
+            {
+              "name": "filter_variable",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "filter_value",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with series data"
+            }
+          }
+        }
+      },
+      "/fred/category/tags": {
+        "get": {
+          "operationId": "getCategoryTags",
+          "summary": "Retrieve tags for a specific category.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "xml"
+              }
+            },
+            {
+              "name": "category_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "Offset for the start of the results"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "group_id"
+                ]
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with category tags"
+            }
+          }
+        }
+      },
+      "/fred/category/related_tags": {
+        "get": {
+          "operationId": "getCategoryRelatedTags",
+          "summary": "Retrieve related tags for a specific category.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "xml"
+              }
+            },
+            {
+              "name": "category_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Names of tags to find related tags for"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "Maximum number of results to return"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "Offset for the start of the results"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "series_count",
+                  "popularity"
+                ]
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with related tags"
+            }
+          }
+        }
+      },
+      "/fred/releases": {
+        "get": {
+          "operationId": "getReleases",
+          "summary": "Get all releases of economic data.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The maximum number of results to return"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The offset for the start of results"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "release_id",
+                  "name",
+                  "press_release",
+                  "realtime_start",
+                  "realtime_end"
+                ]
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            },
+            {
+              "name": "filter_variable",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "filter_value",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of all economic data releases"
+            }
+          }
+        }
+      },
+      "/fred/releases/dates": {
+        "get": {
+          "operationId": "getReleaseDates",
+          "summary": "Retrieve release dates for all economic data.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The maximum number of results to return"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The offset for the start of results"
+              }
+            },
+            {
+              "name": "last_updated",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Only include releases that have been updated since this time."
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of release dates for economic data"
+            }
+          }
+        }
+      },
+      "/fred/release": {
+        "get": {
+          "operationId": "getReleaseInfo",
+          "summary": "Get information for a specific economic data release.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "release_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID for the release of interest."
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Detailed information about the specified release"
+            }
+          }
+        }
+      },
+      "/fred/release/dates": {
+        "get": {
+          "operationId": "getReleaseDates",
+          "summary": "Retrieve release dates for a specific economic data release.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "release_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID of the release whose dates are being queried."
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Release dates for the specified economic data release"
+            }
+          }
+        }
+      },
+      "/fred/release/series": {
+        "get": {
+          "operationId": "getReleaseSeries",
+          "summary": "Get series for a specific economic data release.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "release_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID of the release whose series are being queried."
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The maximum number of results to return."
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The offset for the start of results."
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "series_id",
+                  "title",
+                  "units",
+                  "frequency",
+                  "seasonal_adjustment",
+                  "realtime_start",
+                  "realtime_end",
+                  "last_updated",
+                  "observation_start",
+                  "observation_end",
+                  "popularity",
+                  "group_popularity"
+                ]
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            },
+            {
+              "name": "filter_variable",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "filter_value",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of related tags for the specified economic data release"
+            }
+          }
+        }
+      },
+      "/fred/release/sources": {
+        "get": {
+          "operationId": "getReleaseSources",
+          "summary": "Get sources for a specific economic data release.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "release_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID of the release whose sources are being queried."
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of sources for the specified economic data release"
+            }
+          }
+        }
+      },
+      "/fred/release/tags": {
+        "get": {
+          "operationId": "getReleaseTags",
+          "summary": "Get tags for a specific economic data release.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "release_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID of the release whose tags are being queried."
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The maximum number of results to return."
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The offset for the start of results."
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "group_id"
+                ]
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            },
+            {
+              "name": "search_text",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "description": "A keyword or phrase to search for within the tag names."
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of tags for the specified economic data release"
+            }
+          }
+        }
+      },
+      "/fred/release/related_tags": {
+        "get": {
+          "operationId": "getReleaseRelatedTags",
+          "summary": "Retrieve related tags for a specific economic data release.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "release_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID of the release for which related tags are being queried."
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "description": "Names of tags to find related tags for."
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The maximum number of results to return."
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The offset for the start of results."
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "series_count",
+                  "popularity"
+                ]
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "asc",
+                  "desc"
+                ]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "A list of related tags for the specified economic data release"
+            }
+          }
+        }
+      },
+      "/fred/release/tables": {
+        "get": {
+          "operationId": "getReleaseTables",
+          "summary": "Get data tables for a specific economic data release.",
+          "parameters": [
+            {
+              "name": "api_key",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "release_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID of the release for which tables are being queried."
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "enum": [
+                  "xml",
+                  "json"
+                ],
+                "default": "json"
+              }
+            },
+            {
+              "name": "element_id",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "description": "The unique ID of the element for which tables are being queried."
+              }
+            },
+            {
+              "name": "include_observations",
+              "in": "query",
+              "schema": {
+                "type": "boolean",
+                "description": "Boolean to include observations in the table."
+              }
+            },
+            {
+              "name": "observation_date",
+              "in": "query",
+              "schema": {
+                "type": "string",
+                "format": "date",
+                "description": "The date of the observation to include in the table."
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Data tables for the specified economic data release"
+            }
+          }
+        }
+      },
+      "/fred/series": {
+        "get": {
+          "operationId": "GetSeries",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description:",
+              "in": "query",
+              "description": "Get an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_id",
+              "in": "query",
+              "description": "The id for a series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/categories": {
+        "get": {
+          "operationId": "GetSeriesCategories",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description:",
+              "in": "query",
+              "description": "Get an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_id",
+              "in": "query",
+              "description": "The id for a series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/observations": {
+        "get": {
+          "operationId": "GetSeriesObservations",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_id",
+              "in": "query",
+              "description": "The id for a series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending observation_date order.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "observation_start",
+              "in": "query",
+              "description": "The start of the observation period.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "observation_end",
+              "in": "query",
+              "description": "The end of the observation period.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "units",
+              "in": "query",
+              "description": "A key that indicates a data value transformation.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "frequency",
+              "in": "query",
+              "description": "An optional parameter that indicates a lower frequency to aggregate values to. The FRED frequency aggregation feature converts higher frequency data series into lower frequency data series (e.g. converts a monthly data series into an annual data series). In FRED, the highest frequency data is daily, and the lowest frequency data is annual. There are 3 aggregation methods available- average, sum, and end of period. See the aggregation_method parameter.",
+              "schema": {
+                "type": "int"
+              }
+            },
+            {
+              "name": "aggregation_method",
+              "in": "query",
+              "description": "A key that indicates the aggregation method used for frequency aggregation. This parameter has no affect if the frequency parameter is not set.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "output_type",
+              "in": "query",
+              "description": "An integer that indicates an output type.",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "vintage_dates",
+              "in": "query",
+              "description": "Vintage dates are used to download data as it existed on these specified dates in history. Vintage dates can be specified instead of a real-time period using realtime_start and realtime_end.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/release": {
+        "get": {
+          "operationId": "GetSeriesRelease",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_id",
+              "in": "query",
+              "description": "The id for a series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/search": {
+        "get": {
+          "operationId": "GetSeriesSearch",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "search_text",
+              "in": "query",
+              "description": "The words to match against economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "search_type",
+              "in": "query",
+              "description": "Determines the type of search to perform.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending observation_date order.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "filter_variable",
+              "in": "query",
+              "description": "The attribute to filter results by.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "filter_value",
+              "in": "query",
+              "description": "The value of the filter_variable attribute to filter results by.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names that series match all of.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "exclude_tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names that series match none of.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/search/tags": {
+        "get": {
+          "operationId": "GetSeriesSearchTags",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_search_text",
+              "in": "query",
+              "description": "The words to match against economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names that series match all of.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_group_id",
+              "in": "query",
+              "description": "A tag group id to filter tags by type.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_search_text",
+              "in": "query",
+              "description": "The words to find matching tags with.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending observation_date order.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/search/related_tags": {
+        "get": {
+          "operationId": "GetSeriesSearchRelated_Tags",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_search_text",
+              "in": "query",
+              "description": "The words to match against economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names that series match all of.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "exclude_tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names that series match none of.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_group_id",
+              "in": "query",
+              "description": "A tag group id to filter tags by type.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_search_text",
+              "in": "query",
+              "description": "The words to find matching tags with.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending observation_date order.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/tags": {
+        "get": {
+          "operationId": "GetSeriesTags",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_id",
+              "in": "query",
+              "description": "The id for a series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending observation_date order.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/updates": {
+        "get": {
+          "operationId": "GetSeriesUpdates",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "filter_value",
+              "in": "query",
+              "description": "The value of the filter_variable attribute to filter results by.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "start_time",
+              "in": "query",
+              "description": "Start time for limiting results for a time range, can filter down to minutes",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "end_time",
+              "in": "query",
+              "description": "End time for limiting results for a time range, can filter down to minutes",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/series/vintagedates": {
+        "get": {
+          "operationId": "GetSeriesVintagedates",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get the observations or data values for an economic data series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "series_id",
+              "in": "query",
+              "description": "The id for a series.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/sources": {
+        "get": {
+          "operationId": "GetSources",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get all sources of economic data.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending order for attribute values specified by order_by.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/source": {
+        "get": {
+          "operationId": "GetSource",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get all sources of economic data.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "source_id",
+              "in": "query",
+              "description": "The id for a source.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/source/releases": {
+        "get": {
+          "operationId": "GetSourceReleases",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "The",
+              "in": "query",
+              "description": "#Description",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get all sources of economic data.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "source_id",
+              "in": "query",
+              "description": "The id for a source.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending order for attribute values specified by order_by.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/tags": {
+        "get": {
+          "operationId": "GetTags",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get FRED tags. Optionally, filter results by tag name, tag group, or search. FRED tags are attributes assigned to series. See the related request fred/related_tags",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names to only include in the response. See the related request fred/related_tags.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_group_id",
+              "in": "query",
+              "description": "A tag group id to filter tags by type.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "search_text",
+              "in": "query",
+              "description": "The words to find matching tags with.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending order for attribute values specified by order_by.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/related_tags": {
+        "get": {
+          "operationId": "GetRelated_Tags",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get FRED tags. Optionally, filter results by tag name, tag group, or search. FRED tags are attributes assigned to series. See the related request fred/related_tags",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names to only include in the response. See the related request fred/related_tags.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_group_id",
+              "in": "query",
+              "description": "A tag group id to filter tags by type.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "search_text",
+              "in": "query",
+              "description": "The words to find matching tags with.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending order for attribute values specified by order_by.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/fred/tags/series": {
+        "get": {
+          "operationId": "GetTagsSeries",
+          "summary": "",
+          "parameters": [
+            {
+              "name": "Description",
+              "in": "query",
+              "description": "Get FRED tags. Optionally, filter results by tag name, tag group, or search. FRED tags are attributes assigned to series. See the related request fred/related_tags",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "api_key",
+              "in": "query",
+              "description": "Read API Keys for more information.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "file_type",
+              "in": "query",
+              "description": "A key or file extension that indicates the type of file to send.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names to only include in the response. See the related request fred/related_tags.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "exclude_tag_names",
+              "in": "query",
+              "description": "A semicolon delimited list of tag names that series match none of.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_start",
+              "in": "query",
+              "description": "The start of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "realtime_end",
+              "in": "query",
+              "description": "The end of the real-time period. For more information, see Real-Time Periods.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The maximum number of results to return.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "non-negative integer, optional, default: 0",
+              "schema": {
+                "type": "integer",
+                "default": "0"
+              }
+            },
+            {
+              "name": "order_by",
+              "in": "query",
+              "description": "Order results by values of the specified attribute.",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sort_order",
+              "in": "query",
+              "description": "Sort results is ascending or descending order for attribute values specified by order_by.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
