@@ -111,6 +111,15 @@ fred/tags/series - Get the series matching tags.
 
 
 
+**For FRED IDs, Parent ID and Names**
+
+Use the folowing file fred-ID-parentID-Names.csv
+
+For updated ID and Names, you can use **FRED-API-ID-Fetcher** from here https://github.com/armanobosyan/FRED-API-ID-Fetcher
+
+
+
+**End**
 
 For geting **API Kye** visit https://fredaccount.stlouisfed.org/apikeys
 
