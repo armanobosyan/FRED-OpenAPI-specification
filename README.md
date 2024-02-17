@@ -1,57 +1,67 @@
-# fred-OpenAPI-specification
-YAML OpenAPI specification for the Federal Reserve Economic Data (FRED) API
+# fred-OpenAPI-Specification
+OpenAPI specification for the Federal Reserve Economic Data (FRED) API (JSON and YAML)
 
-# About
-This OpenAPI specification serves as a contract for developers, detailing how to programmatically access economic data from the Federal Reserve Economic Data (FRED) API database.
+**FRED API Summary**
+The Federal Reserve Bank of St. Louis' Economic Research Division offers enhanced economic data services through the FRED® API. This API enables programmatic access to the Federal Reserve Economic Data (FRED®) and Archival Federal Reserve Economic Data (ALFRED®).
 
-It covers operations for querying categories, their hierarchies, related tags, and detailed series data within categories or releases. By following this specification, developers can integrate FRED's rich economic datasets into their applications, enabling analysis, visualization, and dissemination of economic indicators and trends.
+**Data Retrieval**
+Users can query specific economic data by specifying source, release, category, and series among other preferences.
 
-This YAML snippet is an OpenAPI (formerly known as Swagger) specification for the Federal Reserve Economic Data (FRED) API. It outlines how to interact with the API, detailing available endpoints, their operations, parameters, and expected responses. 
-Here's a breakdown of its components and their functionalities:
+**Technology Compatibility**
+Supports any programming language capable of parsing XML or JSON. Communication with servers is facilitated via HTTPS, based on the REST web service architecture.
 
-# Overview
-openapi: 3.0.0: Specifies the OpenAPI Specification version used.
-info: Provides metadata about the API such as its title, description, and version.
-servers: Lists the base URL(s) for the API endpoints.
-Paths and Operations
-Defines the available paths (endpoints) and operations (HTTP methods) that can be used to interact with the API.
+**REST Web Service Features**
+Uses HTTPS for secure data requests and responses.
+Utilizes URLs for specifying data requests.
+Delivers data in XML or JSON formats, offering structured, flexible data handling compared to HTML's visual and less strictly formatted structure.
 
-## /category
-get: Fetches a specific category by its ID.
-parameters: Include api_key, file_type, and category_id.
-responses: Returns details of the specified category.
+**API Endpoints**
 
-## /category/children
-get: Retrieves child categories for a given parent category ID.
-parameters: Similar to /category, with additional parameters for time filtering (realtime_start, realtime_end).
-responses: Lists child categories of the specified parent category.
+** Categories
+fred/category - Get a category.
+fred/category/children - Get the child categories for a specified parent category.
+fred/category/related - Get the related categories for a category.
+fred/category/series - Get the series in a category.
+fred/category/tags - Get the tags for a category.
+fred/category/related_tags - Get the related tags for a category.
 
-## /category/related
-get: Fetches categories related to a specified category.
-parameters: Includes api_key, file_type, category_id, and time filtering options.
-responses: Provides related categories.
+** Releases
+fred/releases - Get all releases of economic data.
+fred/releases/dates - Get release dates for all releases of economic data.
+fred/release - Get a release of economic data.
+fred/release/dates - Get release dates for a release of economic data.
+fred/release/series - Get the series on a release of economic data.
+fred/release/sources - Get the sources for a release of economic data.
+fred/release/tags - Get the tags for a release.
+fred/release/related_tags - Get the related tags for a release.
+fred/release/tables - Get the release tables for a given release.
 
-## /category/series
-get: Retrieves series within a specified category.
-parameters: Extends the common parameters with options to limit, offset, order, and filter the results.
-responses: Returns series data within the category.
+** Series
+fred/series - Get an economic data series.
+fred/series/categories - Get the categories for an economic data series.
+fred/series/observations - Get the observations or data values for an economic data series.
+fred/series/release - Get the release for an economic data series.
+fred/series/search - Get economic data series that match keywords.
+fred/series/search/tags - Get the tags for a series search.
+fred/series/search/related_tags - Get the related tags for a series search.
+fred/series/tags - Get the tags for an economic data series.
+fred/series/updates - Get economic data series sorted by when observations were updated on the FRED® server.
+fred/series/vintagedates - Get the dates in history when a series' data values were revised or new data values were released.
 
-## /category/tags
-get: Fetches tags associated with a specific category.
-parameters: Standard parameters with options for pagination and ordering.
-responses: Lists tags for the category.
+** Sources
+fred/sources - Get all sources of economic data.
+fred/source - Get a source of economic data.
+fred/source/releases - Get the releases for a source.
 
-## /category/related_tags
-get: Retrieves tags related to specific tags within a category.
-parameters: Includes tag_names to specify which tags to find relations for.
-responses: Provides related tags based on the specified tags.
+** Tags
+fred/tags - Get all tags, search for tags, or get tags by name.
+fred/related_tags - Get the related tags for one or more tags.
+fred/tags/series - Get the series matching tags.
 
-## /releases and Subpaths
-get: Various operations related to economic data releases, including fetching all releases, release dates, series within a release, sources, tags, related tags, tables, etc.
-parameters: Common parameters are used across these endpoints, with specific ones like release_id, tag_names, and element_id tailored to each operation's needs.
-responses: Depending on the endpoint, responses include lists of releases, series, tags, tables, and more, often with options to filter, sort, and paginate results.
 
-Additianl path will be added...
+For geting API Kye visit https://fredaccount.stlouisfed.org/apikeys
+
+Fore more info visit https://research.stlouisfed.org/
 
 
 
