@@ -6,7 +6,7 @@
 
 **FRED API Summary**
 
-The Federal Reserve Bank of St. Louis' Economic Research Division offers enhanced economic data services through the FRED® API. This API enables programmatic access to the Federal Reserve Economic Data (FRED®) and Archival Federal Reserve Economic Data (ALFRED®).
+The Federal Reserve Bank of St. Louis' Economic Research Division offers enhanced economic data services through the FRED API. This API enables programmatic access to the Federal Reserve Economic Data (FRED)
 
 
 **Data Retrieval**
