@@ -121,6 +121,6 @@ For updated ID and Names, you can use **FRED-API-ID-Fetcher** from here https://
 
 **End**
 
-For geting **API Kye** visit https://fredaccount.stlouisfed.org/apikeys
+For geting **API Key** visit https://fredaccount.stlouisfed.org/apikeys
 
 Fore more info visit https://research.stlouisfed.org/
