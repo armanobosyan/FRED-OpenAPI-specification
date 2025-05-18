@@ -19,7 +19,7 @@
           "parameters": [
             {
               "name": "api_key",
-              "description": "88e6be3b42147d9eb6726f79a6671453",
+              "description": "",
               "in": "query",
               "required": true,
               "schema": {
