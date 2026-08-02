@@ -1,0 +1,27 @@
+name: Validate spec
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Validates fred-schema.yaml against the OpenAPI 3.0 schema, checks that
+      # every operationId is unique, and fails if fred-schema.json no longer
+      # matches the YAML it is generated from.
+      - name: Validate specification and check JSON is in sync
+        run: python sync-spec.py --check
