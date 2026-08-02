@@ -116,7 +116,10 @@ id,name,parent_id
 
 FRED has no endpoint that returns the category tree in one call, so this file
 is assembled by walking `fred/category/children` from the root. Regenerate it
-with [FRED-API-ID-Fetcher](https://github.com/armanobosyan/FRED-API-ID-Fetcher).
+with [FRED-API-ID-Fetcher](https://github.com/armanobosyan/FRED-API-ID-Fetcher),
+which also fetches the metadata of every series filed under those categories —
+title, frequency, units, seasonality and coverage — which FRED likewise offers
+no endpoint to list.
 
 ## Version 2.0.0
 
